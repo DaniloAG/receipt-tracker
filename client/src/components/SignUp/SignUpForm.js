@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Redirect } from "react-router-dom";
-import Form from "../Forms/Form";
-import Validate from "../../utils/Validate";
-import { SignUp, SignUpHeader, SignUpButton } from "./SignUpForm.style";
-
+import { Form, Button } from "semantic-ui-react";
 import axios from "axios";
+import Validate from "../../utils/Validate";
+import InlineError from "../Messages/InlineError";
 
 class SignUpForm extends Component{
   constructor(props){
@@ -26,14 +25,6 @@ class SignUpForm extends Component{
     this.setState({[e.target.name]: e.target.value});
   }
 
-  isValid(){
-    const { errors, valid } = Validate(this.state);
-    if (!valid){
-      this.setState({ errors });
-    }
-    return valid;
-  }
-
   onSubmit(e){
     e.preventDefault();
     if (this.isValid()){
@@ -51,34 +42,41 @@ class SignUpForm extends Component{
     }
   }
 
+  isValid(){
+    const { errors, valid } = Validate(this.state);
+    if (!valid){
+      this.setState({ errors });
+    }
+    return valid;
+  }
+
   render(){
     const { errors } = this.state;
     return (
       <div>
-        <SignUp onSubmit={this.onSubmit}>
-          <SignUpHeader>Please fill in the required fields</SignUpHeader>
-          <Form
-            name="username"
-            value={this.state.username}
-            label="Username"
-            required={true}
-            error={errors.username}
-            type="text"
-            onChange={this.onChange}
-          />
-          <Form
-            name="password"
-            value={this.state.password}
-            label="Password"
-            required={true}
-            error={errors.password}
-            type="password"
-            onChange={this.onChange}
-          />
-          <div className="form-group">
-            <SignUpButton disabled={this.state.submitted} className="btn btn-danger btn-lg">Submit</SignUpButton>
-          </div>
-        </SignUp>
+        <Form onSubmit={this.onSubmit} loading={this.state.submitted}>
+          <Form.Field error={!!errors.username}>
+            <label htmlFor="username">Email</label>
+            <input
+              name="username"
+              value={this.state.username}
+              type="text"
+              onChange={this.onChange}
+            />
+            {errors.username && <InlineError text={errors.username} />}
+          </Form.Field>
+          <Form.Field error={!!errors.password}>
+            <label htmlFor="password">Password</label>
+            <input
+              name="password"
+              value={this.state.password}
+              type="password"
+              onChange={this.onChange}
+            />
+            {errors.password && <InlineError text={errors.password} />}
+          </Form.Field>
+          <Button primary fluid>Submit</Button>
+        </Form>
         { this.state.success && <Redirect push to="/signin" /> }
       </div>
     );

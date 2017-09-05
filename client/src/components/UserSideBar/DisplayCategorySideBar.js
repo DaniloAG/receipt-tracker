@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import axios from "axios";
 import PropTypes from "prop-types";
+import { Button } from "semantic-ui-react";
 
 class DisplayCategorySideBar extends Component {
   constructor(props) {
@@ -46,6 +47,13 @@ class DisplayCategorySideBar extends Component {
     }
   }
 
+  redirectGroupPage(key){
+    this.setState({
+      redirect: true,
+      redirect_id: key
+    })
+  }
+
 
   render() {
     console.log("in the reding");
@@ -54,11 +62,11 @@ class DisplayCategorySideBar extends Component {
         <div>
           {
             Object.keys(categoryIdDict).map((key, index) => (
-              <button onClick={() => this.redirectGroupPage(key)}
-                      className="btn btn-primary"
+              <Button primary
+                      onClick={() => this.redirectGroupPage(key)}
                       key={index}>
                 {categoryIdDict[key]}
-              </button>
+              </Button>
             ))
           }
 

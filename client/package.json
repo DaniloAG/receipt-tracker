@@ -12,6 +12,7 @@
     "axios": "^0.16.2",
     "classnames": "^2.2.5",
     "lodash": "^4.17.4",
+    "prop-types": "^15.5.10",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-dropzone": "^4.1.0",
@@ -20,8 +21,20 @@
     "react-scripts": "1.0.11",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
+    "semantic-ui-css": "^2.2.12",
+    "semantic-ui-react": "^0.72.0",
     "styled-components": "^2.1.1",
     "superagent": "^3.6.0"
+  },
+  "devDependencies": {
+    "eslint": "^4.6.1",
+    "eslint-config-airbnb": "15.0.1",
+    "eslint-config-prettier": "^2.4.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "5.1.1",
+    "eslint-plugin-prettier": "^2.2.0",
+    "eslint-plugin-react": "^7.3.0",
+    "prettier": "^1.6.1"
   },
   "proxy": "http://localhost:3001/"
 }

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import SimpleForm from "../Forms/SimpleForm";
+import { Form, Button } from "semantic-ui-react";
 import DisplayCategorySideBar from "../UserSideBar/DisplayCategorySideBar"
 
 class Dashboard extends Component {
@@ -19,6 +19,25 @@ class Dashboard extends Component {
     this.createGroup = this.createGroup.bind(this);
     this.associateGroup = this.associateGroup.bind(this);
     //this.updateGroups = this.updateGroups.bind(this);
+  }
+
+  componentDidMount() {
+    var self = this;
+    axios.get("/api/acquireUserGroups?_id=" + this.state.user_id)
+    .then(
+      (res) => {
+        self.setState({
+          category_id_list: res.data.groups
+        });
+        self.render();
+      },
+      (err) => {
+        console.log("error getting category name");
+      }
+    );
+    this.setState({
+      new_receipt: false
+    });
   }
 
   onClick() {
@@ -64,26 +83,6 @@ class Dashboard extends Component {
     );
   }
 
-  componentDidMount() {
-    var self = this;
-    axios.get("/api/acquireUserGroups?_id=" + this.state.user_id)
-    .then(
-      (res) => {
-        self.setState({
-          category_id_list: res.data.groups
-        });
-        self.render();
-      },
-      (err) => {
-        console.log("error getting category name");
-      }
-    );
-    this.setState({
-      new_receipt: false
-    });
-
-  }
-
   render() {
     console.log("this dashboard is rerendering");
     if (this.state.category_id_list.length  === 0) {
@@ -104,19 +103,18 @@ class Dashboard extends Component {
           Get!
         </button>
         {this.state.new_receipt &&
-          <form onSubmit={this.onSubmit}>
-            <SimpleForm
-              name="group"
-              value={this.state.group_name}
-              label="Group Name"
-              required={true}
-              type="text"
-              onChange={this.onChange}
-            />
-            <div className="form-group">
-              <button className="btn btn-primary btn-lg">Submit</button>
-            </div>
-          </form>
+          <Form onSubmit={this.onSubmit}>
+            <Form.Field>
+              <label htmlFor="group">Group Name</label>
+              <input
+                name="group"
+                value={this.state.group_name}
+                type="text"
+                onChange={this.onChange}
+              />
+            </Form.Field>
+            <Button primary>Submit</Button>
+          </Form>
         }
       </div>
     );

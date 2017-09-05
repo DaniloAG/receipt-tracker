@@ -1,7 +1,7 @@
 import isEmpty from "lodash/isEmpty";
 
 export default function Validate(data){
-  let errors = {};
+  const errors = {};
   if (typeof data.username === "undefined" || !data.username){
     errors.username = "This field is required";
   }

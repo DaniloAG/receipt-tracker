@@ -1,19 +1,16 @@
-import React, { Component } from "react";
-import SignUpForm from "./SignUpForm";
+import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import SignUpForm from "./SignUpForm";
 import { userSignUpRequest } from "../../actions/SignUpActions";
+import { SignUpHeader, SignUp } from "./SignUpForm.style";
 
-class SignUpPage extends Component{
-  render(){
-    const { userSignUpRequest } = this.props;
-    return (
-      <div className="container">
-        <SignUpForm userSignUpRequest={userSignUpRequest} />
-      </div>
-    );
-  }
-}
+const SignUpPage = ({ userSignUpRequest }) => (
+  <SignUp className="ui container">
+    <SignUpHeader>Please fill in the required fields</SignUpHeader>
+    <SignUpForm userSignUpRequest={userSignUpRequest} />
+  </SignUp>
+);
 
 SignUpPage.propTypes = {
   userSignUpRequest: PropTypes.func.isRequired

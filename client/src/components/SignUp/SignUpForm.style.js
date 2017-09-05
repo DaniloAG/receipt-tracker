@@ -12,6 +12,3 @@ export const SignUpHeader = styled.h2`
   line-height: 1.2;
   text-align: center;
 `;
-export const SignUpButton = styled.button`
-  width: 100%;
-`;
