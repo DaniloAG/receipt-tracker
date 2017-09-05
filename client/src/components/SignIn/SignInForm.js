@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import { Form, Button } from "semantic-ui-react";
 import Validate from "../../utils/Validate";
 import InlineError from "../Messages/InlineError";
@@ -70,6 +70,9 @@ class SignIn extends Component{
               onChange={this.onChange}
             />
             {errors.password && <InlineError text={errors.password} />}
+          </Form.Field>
+          <Form.Field>
+            <Link to="/register">Register an account</Link>
           </Form.Field>
           <Button primary fluid>Submit</Button>
         </Form>
