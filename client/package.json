@@ -24,7 +24,8 @@
     "semantic-ui-css": "^2.2.12",
     "semantic-ui-react": "^0.72.0",
     "styled-components": "^2.1.1",
-    "superagent": "^3.6.0"
+    "superagent": "^3.6.0",
+    "redux-devtools-extension": "^2.13.2"
   },
   "devDependencies": {
     "eslint": "^4.6.1",

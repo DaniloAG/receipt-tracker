@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { Redirect, Link } from "react-router-dom";
 import { Form, Button } from "semantic-ui-react";
 import Validate from "../../utils/Validate";
@@ -24,14 +25,14 @@ class SignIn extends Component{
     e.preventDefault();
     if (this.isValid()){
       this.setState({ submitted: true, errors: {} });
-      this.props.userSignInRequest(this.state)
-      .then(
-        (res) => { this.setState({ success: true, submitted: false,
-          user_id: res.data._id}) },
-        (err) => { this.setState({ submitted: false, errors: err.response.data}) }
-      );
+      this.props.onSubmit(this.state);
+      // this.props.userSignInRequest(this.state)
+      // .then(
+      //   (res) => { this.setState({ success: true, submitted: false,
+      //     user_id: res.data._id}) },
+      //   (err) => { this.setState({ submitted: false, errors: err.response.data}) }
+      // );
     }
-
   }
 
   onChange(e){
@@ -86,5 +87,9 @@ class SignIn extends Component{
     );
   }
 }
+
+SignIn.propTypes = {
+  onSubmit: PropTypes.func.isRequired
+};
 
 export default SignIn;

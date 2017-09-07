@@ -4,7 +4,7 @@ export const SignUp = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-top: 15%;
+  margin-top: 10%;
 `;
 
 export const SignUpHeader = styled.h2`

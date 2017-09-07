@@ -17,7 +17,6 @@ export const Showcase = styled.header`
 export const ShowcaseHeader = styled.h1`
   font-size: 50px;
   line-height: 1.2;
-  margin-top: -40px;
 `;
 
 export const ShowcaseParagraph = styled.p`
