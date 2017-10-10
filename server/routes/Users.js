@@ -17,8 +17,11 @@ router.post("/register", (req, res) => {
   }
   User.countUser(user.username, (err, count) => {
     if (err){
-      throw err;
+      // log error
+      console.log(err);
+      return res.status(500).json('Error has occured');
     }
+
     if (count > 0){
       let errors = {};
       errors.username = "Username is already taken";
@@ -26,8 +29,11 @@ router.post("/register", (req, res) => {
     }
     User.addUser(user, (error, user) => {
       if (error){
-        throw error;
+        // log error
+        console.log(error);
+        return res.status(500).json('Error has occured');
       }
+
       res.status(200).json(user);
     });
   });
